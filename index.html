@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <script type="text/javascript" src="js/paper-full.min.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+        var circles = [];
+        function onKeyDown(event) {
+            var maxPoint = new Point(view.size.width, view.size.height);
+            var randomPoint = Point.random();
+            var point = maxPoint* randomPoint;
+            console.log(maxPoint);
+            // When a key is pressed, set the content of the text item:
+            var newCircle = new Path.Circle(new Point(point,400),100)
+            newCircle.fillColor= 'red';
+            circles.push(newCircle);
+        }
+        
+        function onFrame(event) {
+            for(var i = 0; i<circles.length; i++) {
+                circles[i].fillColor.hue+=1;
+                circles[i].scale(.9)
+            }
+        }
+
+      
+    </script>
+</head>
+<body>
+    <canvas id="myCanvas" resize></canvas>
+</body>
+</html>
