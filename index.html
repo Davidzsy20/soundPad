@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.9/howler.core.min.js"></script>
+    <title>Sound</title>
     <script type="text/javascript" src="paper-full.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.28/howler.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script type="text/paperscript" canvas="myCanvas">
-
-         
-          var keyData =  {
+    var keyData =  {
             q: {
                 sound: new Howl({
                   urls: ['sounds/bubbles.mp3']
@@ -168,18 +165,17 @@
             }
         }
 
-
         var circles = [];
         function onKeyDown(event) {
             if(keyData[event.key]) {
-              sound.play()
+   
               var maxPoint = new Point(view.size.width, view.size.height);
               var randomPoint = Point.random();
               var point = maxPoint* randomPoint;
-              console.log(maxPoint);
               // When a key is pressed, set the content of the text item:
               var newCircle = new Path.Circle(new Point(point,400),100)
               newCircle.fillColor= 'red';
+              keyData[event.key].sound.play()
               circles.push(newCircle);
             }
         }
@@ -195,8 +191,6 @@
                 }
             }
         }
-
-
     </script>
 </head>
 <body>
